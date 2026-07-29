@@ -59,7 +59,6 @@ const STRATAGEMS = [
   { name: 'Eagle Smoke Strike', category: 'Hangar', icon: 'Hangar/Eagle Smoke Strike.svg', groups: [] },
   { name: 'Eagle 110mm Rocket Pods', category: 'Hangar', icon: 'Hangar/Eagle 110MM Rocket Pods.svg', groups: [] },
   { name: 'Eagle 500kg Bomb', category: 'Hangar', icon: 'Hangar/Eagle 500KG Bomb.svg', groups: [] },
-  { name: 'Eagle Incendiary Bombs', category: 'Hangar', icon: 'Hangar/Eagle Incendiary Bombs.svg', groups: [] },
   { name: 'Jump Pack', category: 'Hangar', icon: 'Hangar/Jump Pack.svg', groups: ['backpack'] },
   { name: 'Fast Recon Vehicle', category: 'Hangar', icon: 'Hangar/Fast Recon Vehicle.svg', groups: [] },
   { name: 'Incinerator FRV', category: 'Hangar', icon: 'Hangar/Incinerator FRV.svg', groups: [] },

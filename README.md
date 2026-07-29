@@ -131,7 +131,7 @@ of them takes a backpack, add `'backpack'` to its `groups`.
 
 ## Roster notes
 
-91 stratagems are in the pool, built from `StratagemList.txt` plus the SVGs that
+90 stratagems are in the pool, built from `StratagemList.txt` plus the SVGs that
 were in the repo but not on that list (newer Warbond stratagems such as Hover
 Pack, Laser Sentry, C4 Pack and the Siege Breakers weapons).
 
@@ -140,19 +140,25 @@ the drills, Upload Data and so on, all under `General Stratagems/` — are
 deliberately left out, since they are not loadout picks. Add them to
 `STRATAGEMS` if you want them rolled.
 
-**Eight stratagems have no artwork in the repo yet** and currently show the
-placeholder. Drop a file at the listed path and it will appear automatically:
+**Every stratagem in the pool has its own artwork** — the placeholder is not in
+use. It stays wired up so that a new entry added without an SVG shows a
+question-mark glyph rather than a broken image.
 
-| Stratagem | Expected file |
-| --- | --- |
-| Machine Gun Sentry | `Robotics Workshop/Machine Gun Sentry.svg` |
-| Gatling Sentry | `Robotics Workshop/Gatling Sentry.svg` |
-| Mortar Sentry | `Robotics Workshop/Mortar Sentry.svg` |
-| Rocket Sentry | `Robotics Workshop/Rocket Sentry.svg` |
-| EMS Mortar Sentry | `Robotics Workshop/EMS Mortar Sentry.svg` |
-| Guard Dog | `Robotics Workshop/Guard Dog.svg` |
-| EXO-45 Patriot Exosuit | `Robotics Workshop/Patriot Exosuit.svg` |
-| Eagle Incendiary Bombs | `Hangar/Eagle Incendiary Bombs.svg` |
+`StratagemList.txt` lists "Eagle Incendiary Bombs" separately from "Eagle Napalm
+Airstrike", but they are the same stratagem, so only Eagle Napalm Airstrike is
+in the pool.
+
+### A note on icon style
+
+The seven sentry, Guard Dog and Patriot Exosuit icons were traced with the
+in-game tile baked in — an opaque dark square plus a coloured border. That was
+removed on the way in so they sit on a transparent background like the rest of
+the set, and their off-white was set to `#fff` to match. The glyph colour coding
+is untouched and already lined up: green for sentries, blue for backpack
+equipment and exosuits, red for Eagle strikes.
+
+If you add more artwork traced the same way, strip the background rect and the
+border path, or the card will show a filled tile instead of a floating glyph.
 
 ---
 
@@ -165,7 +171,7 @@ node tools/check.cjs
 It verifies that every entry is complete, that there are no duplicate names,
 that every `groups` key refers to a real group, that every `icon` path resolves
 to a file, and that 100,000 rolls all come back with four unique stratagems
-inside the group caps. Missing artwork is reported as a warning, not a failure.
+inside the group caps. A missing SVG is reported as a warning, not a failure.
 
 ---
 
