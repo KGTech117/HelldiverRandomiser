@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stratagem Randomiser</title>
+<meta name="description" content="Rolls a random, legal four-stratagem Helldivers loadout.">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<div class="stripe" aria-hidden="true"></div>
+
+<header class="masthead">
+  <p class="eyebrow">Super Earth Armed Forces &mdash; Strategic Command</p>
+  <h1>Stratagem Randomiser</h1>
+  <p class="subtitle">Loadout assignment is not a democracy, Helldiver.</p>
+</header>
+
+<main>
+  <section class="loadout" id="loadout" aria-label="Rolled loadout"></section>
+
+  <div class="controls">
+    <button type="button" id="roll" class="roll-button">
+      <span class="roll-button__label">Randomise</span>
+    </button>
+    <p class="hint"><span id="pool-count">0</span> stratagems in the pool &middot; max one backpack, max one exosuit</p>
+  </div>
+
+  <p class="visually-hidden" id="status" role="status" aria-live="polite"></p>
+</main>
+
+<footer class="footer">
+  <p>Edit <code>assets/js/data.js</code> to add stratagems or change the restrictions. See the README.</p>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/randomiser.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
