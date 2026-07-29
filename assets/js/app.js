@@ -70,4 +70,10 @@ function roll() {
 
 buildSlots();
 rollButton.addEventListener('click', roll);
+
+// The footer hint is built from the groups, so adding a restriction in data.js
+// shows up here without touching the markup.
 document.getElementById('pool-count').textContent = STRATAGEMS.length;
+document.getElementById('rules').textContent = Object.values(STRATAGEM_GROUPS)
+  .map((group) => `max ${group.max} ${group.label}`)
+  .join(' · ');

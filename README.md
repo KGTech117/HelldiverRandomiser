@@ -5,7 +5,9 @@ Rolls a random four-stratagem Helldivers loadout that is always legal:
 - exactly **4** stratagems
 - **no duplicates**
 - **max one backpack-slot stratagem**
+- **max one support weapon**
 - **max one exosuit**
+- **max one FRV**
 
 No build step, no dependencies. Open `index.html` in a browser and press
 **RANDOMISE**.
@@ -54,11 +56,17 @@ per roll, and the same for `exosuit`:
 { name: 'EXO-51 Lumberer', category: 'Exo Experts',         icon: 'Exo Experts/Lumberer Exosuit.svg',          groups: ['exosuit'] },
 ```
 
-A stratagem can be in more than one group — `groups: ['backpack', 'exosuit']`
-counts against both caps.
+A stratagem can be in more than one group and counts against every cap it
+belongs to. The Autocannon is both a backpack item and a support weapon, so it
+carries two badges and blocks both:
 
-That is the whole job. Nothing else needs touching: the pool count in the
-footer, the roll logic and the constraint checking all read from this array.
+```js
+{ name: 'Autocannon', category: 'Patriotic Administration Center', icon: 'Patriotic Administration Center/Autocannon.svg', groups: ['backpack', 'support'] },
+```
+
+That is the whole job. Nothing else needs touching: the roll logic, the
+constraint checking, the pool count and the list of caps printed under the
+button are all generated from this file.
 
 ### The artwork
 
@@ -82,9 +90,11 @@ Say you want at most one sentry per loadout. Add a group to
 
 ```js
 const STRATAGEM_GROUPS = {
-  backpack: { label: 'Backpack Slot', max: 1 },
-  exosuit:  { label: 'Exosuit',       max: 1 },
-  sentry:   { label: 'Sentry',        max: 1 },   // new
+  backpack: { label: 'Backpack Slot',  max: 1 },
+  support:  { label: 'Support Weapon', max: 1 },
+  exosuit:  { label: 'Exosuit',        max: 1 },
+  frv:      { label: 'FRV',            max: 1 },
+  sentry:   { label: 'Sentry',         max: 1 },   // new
 };
 ```
 
@@ -94,8 +104,9 @@ Then tag the members:
 { name: 'Gatling Sentry', category: 'Robotics Workshop', icon: 'Robotics Workshop/Gatling Sentry.svg', groups: ['sentry'] },
 ```
 
-`label` is the text on the little card badge. `max` is how many members may
-appear in one loadout — set it to `2` if you want to allow a pair.
+`label` is the text on the little card badge, and it is also what appears in
+the caps line under the RANDOMISE button. `max` is how many members may appear
+in one loadout — set it to `2` if you want to allow a pair.
 
 To **remove** a restriction, delete the group and clear that key out of the
 `groups` arrays that mention it. To **loosen** one, raise its `max`.
@@ -122,10 +133,38 @@ backpack slot in game, so they were added to keep rolled loadouts playable:
 **Guard Dog, Guard Dog Breath, Guard Dog K-9, Directional Shield, Hover Pack,
 C4 Pack**. Drop `'backpack'` from any of their `groups` arrays if you disagree.
 
-A handful of newer Warbond stratagems are in the pool with **no** group because
-their slot behaviour was not certain: **Epoch, Bullet Storm, Speargun, EAT-411,
-GL-28, GL-52 De-Escalator, Defoliation Tool, MS-11 Solo Silo, CQC-20**. If any
-of them takes a backpack, add `'backpack'` to its `groups`.
+**Support Weapon — max 1** (32 members)
+
+Airburst Rocket Launcher · Anti-Materiel Rifle · Arc Thrower · Autocannon ·
+Bullet Storm · C4 Pack · Commando · CQC-20 · Cremator · Defoliation Tool ·
+EAT-411 · EAT-700 Napalm · Epoch · Expendable Anti-Tank · Flamethrower · GL-28 ·
+GL-52 De-Escalator · Grenade Launcher · Heavy Machine Gun · Laser Cannon ·
+M-1000 Maxigun · Machine Gun · MS-11 Solo Silo · One True Flag · Quasar Cannon ·
+Railgun · Recoilless Rifle · Spear · Speargun · Stalwart · Sterilizer ·
+W.A.S.P. Launcher
+
+Taken from the wiki's "Support Weapons" category. Eight of these are also
+backpack items — a stratagem can sit in both groups and counts against both
+caps.
+
+Two entries on that wiki page are ignored: **EAT-411 Leveller/zh** is a
+translation of a page already covered, and **April Fools/FSF-14 Sprar** is a
+joke page. Two more are in the category but not in this roster, because the repo
+has no artwork for them: **CQC-72 Entrenchment Tool** and **SG-88 Break-Action
+Shotgun**. Add them to `STRATAGEMS` with `groups: ['support']` if the icons turn
+up.
+
+**Recoilless Rifle** is tagged `support` even though the wiki category page does
+not list it — it is plainly a support weapon, and leaving it out would let it
+roll next to a second one.
+
+**FRV — max 1** (3 members)
+
+Fast Recon Vehicle · Incinerator FRV · Supply FRV
+
+**Bastion Tank** is deliberately *not* in this group: it is a vehicle but not an
+FRV, so it can still roll alongside one. Add `'frv'` to it — or better, rename
+the group to `vehicle` — if you want one vehicle of any kind per loadout.
 
 ---
 
