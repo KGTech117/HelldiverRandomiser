@@ -139,7 +139,7 @@ const STRATAGEMS = [
   { name: 'Bastion Tank', category: 'Siege Breakers', icon: 'Siege Breakers/Bastion MK XVI.svg', groups: [] },
   { name: 'CQC-20', category: 'Siege Breakers', icon: 'Siege Breakers/CQC-20.svg', groups: ['support'] },
   { name: 'EAT-411', category: 'Siege Breakers', icon: 'Siege Breakers/EAT-411.svg', groups: ['support'] },
-  { name: 'GL-28', category: 'Siege Breakers', icon: 'Siege Breakers/GL-28.svg', groups: ['support'] },
+  { name: 'GL-28', category: 'Siege Breakers', icon: 'Siege Breakers/GL-28.svg', groups: ['backpack', 'support'] },
 ];
 
 /* Exported for the Node checker in tools/. Ignored by the browser. */
