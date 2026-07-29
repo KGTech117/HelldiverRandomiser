@@ -131,7 +131,7 @@ of them takes a backpack, add `'backpack'` to its `groups`.
 
 ## Roster notes
 
-91 stratagems are in the pool, built from `StratagemList.txt` plus the SVGs that
+90 stratagems are in the pool, built from `StratagemList.txt` plus the SVGs that
 were in the repo but not on that list (newer Warbond stratagems such as Hover
 Pack, Laser Sentry, C4 Pack and the Siege Breakers weapons).
 
@@ -140,27 +140,24 @@ the drills, Upload Data and so on, all under `General Stratagems/` — are
 deliberately left out, since they are not loadout picks. Add them to
 `STRATAGEMS` if you want them rolled.
 
-**Two stratagems have no artwork in the repo yet** and currently show the
-placeholder. Drop a file at the listed path and it will appear automatically:
+**Every stratagem in the pool has its own artwork** — the placeholder is not in
+use. It stays wired up so that a new entry added without an SVG shows a
+question-mark glyph rather than a broken image.
 
-| Stratagem | Expected file |
-| --- | --- |
-| Rocket Sentry | `Robotics Workshop/Rocket Sentry.svg` |
-| Eagle Incendiary Bombs | `Hangar/Eagle Incendiary Bombs.svg` |
-
-`MissingSVG/EagleNapalmStrike.svg` is left unused: it is a re-trace of the
-Eagle Napalm Airstrike icon, which already has artwork at
-`Hangar/Eagle Napalm Airstrike.svg`. Delete it, or swap it in if you prefer the
-newer trace.
+`StratagemList.txt` lists "Eagle Incendiary Bombs" separately from "Eagle Napalm
+Airstrike", but they are the same stratagem, so only Eagle Napalm Airstrike is
+in the pool. `MissingSVG/EagleNapalmStrike.svg` is a second trace of that same
+icon and is left unused; delete it, or swap it in over
+`Hangar/Eagle Napalm Airstrike.svg` if you prefer the newer trace.
 
 ### A note on icon style
 
-The icons that arrived in `MissingSVG/` were traced with the in-game tile baked
-in — an opaque dark square plus a coloured border. That was removed on the way
-in so they sit on a transparent background like the other 83 icons, and their
-off-white was set to `#fff` to match. The glyph colour coding is untouched and
-already lines up with the rest of the set: green for sentries, blue for
-backpack equipment and exosuits, red for Eagle strikes.
+The icons supplied in `MissingSVG/` and `RocketSentry.svg` were traced with the
+in-game tile baked in — an opaque dark square plus a coloured border. That was
+removed on the way in so they sit on a transparent background like the rest of
+the set, and their off-white was set to `#fff` to match. The glyph colour coding
+is untouched and already lined up: green for sentries, blue for backpack
+equipment and exosuits, red for Eagle strikes.
 
 If you add more artwork traced the same way, strip the background rect and the
 border path, or the card will show a filled tile instead of a floating glyph.
@@ -176,7 +173,7 @@ node tools/check.cjs
 It verifies that every entry is complete, that there are no duplicate names,
 that every `groups` key refers to a real group, that every `icon` path resolves
 to a file, and that 100,000 rolls all come back with four unique stratagems
-inside the group caps. Missing artwork is reported as a warning, not a failure.
+inside the group caps. A missing SVG is reported as a warning, not a failure.
 
 ---
 
