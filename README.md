@@ -146,13 +146,11 @@ question-mark glyph rather than a broken image.
 
 `StratagemList.txt` lists "Eagle Incendiary Bombs" separately from "Eagle Napalm
 Airstrike", but they are the same stratagem, so only Eagle Napalm Airstrike is
-in the pool. `MissingSVG/EagleNapalmStrike.svg` is a second trace of that same
-icon and is left unused; delete it, or swap it in over
-`Hangar/Eagle Napalm Airstrike.svg` if you prefer the newer trace.
+in the pool.
 
 ### A note on icon style
 
-The icons supplied in `MissingSVG/` and `RocketSentry.svg` were traced with the
+The seven sentry, Guard Dog and Patriot Exosuit icons were traced with the
 in-game tile baked in — an opaque dark square plus a coloured border. That was
 removed on the way in so they sit on a transparent background like the rest of
 the set, and their off-white was set to `#fff` to match. The glyph colour coding
