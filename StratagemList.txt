@@ -1,0 +1,95 @@
+Orbital
+Orbital Precision Strike
+Orbital Gatling Barrage
+Orbital Airburst Strike
+Orbital Gas Strike
+Orbital EMS Strike
+Orbital Smoke Strike
+Orbital Napalm Barrage
+Orbital 120mm HE Barrage
+Orbital Walking Barrage
+Orbital 380mm HE Barrage
+Orbital Laser
+Orbital Railcannon Strike
+Eagle
+Eagle Strafing Run
+Eagle Airstrike
+Eagle Cluster Bomb
+Eagle Napalm Airstrike
+Eagle Smoke Strike
+Eagle 110mm Rocket Pods
+Eagle 500kg Bomb
+Eagle Incendiary Bombs
+Support Weapons
+Machine Gun (MG-43)
+Stalwart
+Heavy Machine Gun
+Anti-Materiel Rifle
+Railgun
+Flamethrower
+Arc Thrower
+Laser Cannon
+Quasar Cannon
+Expendable Anti-Tank (EAT-17)
+Recoilless Rifle
+Commando
+Airburst Rocket Launcher
+Spear
+Autocannon
+Grenade Launcher
+Sterilizer
+W.A.S.P. Launcher
+M-1000 Maxigun
+EAT-700 Napalm
+MS-11 Solo Silo
+Backpack Equipment
+Supply Pack
+Guard Dog
+Guard Dog Rover
+AX/FLAM-75 Guard Dog
+Shield Generator Pack
+Ballistic Shield Backpack
+Jump Pack
+Directional Shield
+LIFT-182 Warp Pack
+Hellbomb Pack
+Sample Extractor Pack
+Sample Scanner Pack
+Sentries
+Machine Gun Sentry
+Gatling Sentry
+Autocannon Sentry
+Rocket Sentry
+Mortar Sentry
+EMS Mortar Sentry
+Anti-Tank Emplacement
+Flame Sentry
+Tesla Tower
+Anti-Personnel Minefield
+Incendiary Mines
+Gas Mines
+Anti-Tank Mines
+Emplacements
+HMG Emplacement
+Shield Generator Relay
+Grenadier Battlement
+Vehicles & Exosuits
+EXO-45 Patriot Exosuit
+EXO-49 Emancipator Exosuit
+Fast Recon Vehicle (FRV)
+Bastion Tank
+EXO-51 Lumberer
+EXO-55 Breakthrough
+Stratagems added through Warbonds
+
+AX/FLAM-75 Guard Dog
+Directional Shield
+LIFT-182 Warp Pack
+Hellbomb Pack
+Sample Extractor Pack
+Sample Scanner Pack
+M-1000 Maxigun
+EAT-700 Napalm
+MS-11 Solo Silo
+EXO-51 Lumberer
+EXO-55 Breakthrough
