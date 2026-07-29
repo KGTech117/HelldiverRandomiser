@@ -140,19 +140,30 @@ the drills, Upload Data and so on, all under `General Stratagems/` — are
 deliberately left out, since they are not loadout picks. Add them to
 `STRATAGEMS` if you want them rolled.
 
-**Eight stratagems have no artwork in the repo yet** and currently show the
+**Two stratagems have no artwork in the repo yet** and currently show the
 placeholder. Drop a file at the listed path and it will appear automatically:
 
 | Stratagem | Expected file |
 | --- | --- |
-| Machine Gun Sentry | `Robotics Workshop/Machine Gun Sentry.svg` |
-| Gatling Sentry | `Robotics Workshop/Gatling Sentry.svg` |
-| Mortar Sentry | `Robotics Workshop/Mortar Sentry.svg` |
 | Rocket Sentry | `Robotics Workshop/Rocket Sentry.svg` |
-| EMS Mortar Sentry | `Robotics Workshop/EMS Mortar Sentry.svg` |
-| Guard Dog | `Robotics Workshop/Guard Dog.svg` |
-| EXO-45 Patriot Exosuit | `Robotics Workshop/Patriot Exosuit.svg` |
 | Eagle Incendiary Bombs | `Hangar/Eagle Incendiary Bombs.svg` |
+
+`MissingSVG/EagleNapalmStrike.svg` is left unused: it is a re-trace of the
+Eagle Napalm Airstrike icon, which already has artwork at
+`Hangar/Eagle Napalm Airstrike.svg`. Delete it, or swap it in if you prefer the
+newer trace.
+
+### A note on icon style
+
+The icons that arrived in `MissingSVG/` were traced with the in-game tile baked
+in — an opaque dark square plus a coloured border. That was removed on the way
+in so they sit on a transparent background like the other 83 icons, and their
+off-white was set to `#fff` to match. The glyph colour coding is untouched and
+already lines up with the rest of the set: green for sentries, blue for
+backpack equipment and exosuits, red for Eagle strikes.
+
+If you add more artwork traced the same way, strip the background rect and the
+border path, or the card will show a filled tile instead of a floating glyph.
 
 ---
 
