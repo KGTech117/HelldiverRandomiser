@@ -32,6 +32,29 @@ const STRATAGEM_GROUPS = {
  *              so you can add the entry now and drop the artwork in later.
  *   groups   - [] means "always usable"; otherwise the group keys from above.
  * -------------------------------------------------------------------------- */
+
+const BOOSTERS = [
+  { name: 'Hellpod Space Optimisation' }, category: 'Helldivers Mobilise', icon: '', groups: [] },
+  { name: 'Vitality Enchancement' }, category: 'Helldivers Mobilise', icon: '', groups: [] },
+  { name: 'UAV Recon Booster' }, category: 'Helldivers Mobilise', icon: '', groups: [] },
+  { name: 'Stamina Enhancement' }, category: 'Helldivers Mobilise', icon: '', groups: [] },
+  { name: 'Muscle Enhancement' }, category: 'Helldivers Mobilise', icon: '', groups: [] },
+  { name: 'Increased Reinforcement Budget' }, category: 'Helldivers Mobilise', icon: '', groups: [] },
+  { name: 'Flexible Reinforcement Budget' }, category: 'Steeled Veterans', icon: '', groups: [] },
+  { name: 'Localization Confusion' }, category: 'Cutting Edge', icon: '', groups: [] },
+  { name: 'Expert Extraction Pilot' }, category: 'Democratic Detonation', icon: '', groups: [] },
+  { name: 'Motivational Shocks' }, category: 'Polar Patriots', icon: '', groups: [] },
+  { name: 'Experimental Infusion' }, category: 'Viper Commandos', icon: '', groups: [] },
+  { name: 'Firebomb Hellpods' }, category: 'Freedom\'s Flame', icon: '', groups: [] },
+  { name: 'Dead Sprint' }, category: 'Truth Enforcers', icon: '', groups: [] },
+  { name: 'Armed Resupply Pods' }, category: 'Urban Legends', icon: '', groups: [] },
+  { name: 'Sample Extricator' }, category: 'Borderline Justice', icon: '', groups: [] },
+  { name: 'Sample Scanner' }, category: 'Masters of Ceremony', icon: '', groups: [] },
+  { name: 'Stun Pods' }, category: 'Force of Law', icon: '', groups: [] },
+  { name: 'Concealed Insertion' }, category: 'Redacted Regiment', icon: '', groups: [] },
+
+];
+
 const STRATAGEMS = [
   /* --- Bridge ------------------------------------------------------------ */
   { name: 'Orbital Precision Strike', category: 'Bridge', icon: 'Bridge/Orbital Precision Strike.svg', groups: [] },
