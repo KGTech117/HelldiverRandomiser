@@ -13,8 +13,8 @@ const fs = require('fs');
 const path = require('path');
 
 const root = path.join(__dirname, '..');
-const { STRATAGEM_GROUPS, STRATAGEMS } = require(path.join(root, 'assets/js/data.js'));
-const { rollLoadout, isValidLoadout } = require(path.join(root, 'assets/js/randomiser.js'));
+const { STRATAGEM_GROUPS, STRATAGEMS, BOOSTERS } = require(path.join(root, 'assets/js/data.js'));
+const { rollLoadout, isValidLoadout, pickOne } = require(path.join(root, 'assets/js/randomiser.js'));
 
 const problems = [];
 const warnings = [];
@@ -57,6 +57,37 @@ for (let i = 0; i < ROLLS; i++) {
 if (badRolls) problems.push(`${badRolls}/${ROLLS} rolls broke a constraint`);
 if (shortRolls) problems.push(`${shortRolls}/${ROLLS} rolls returned fewer than 4 stratagems`);
 
+/* 6. boosters -------------------------------------------------------------- */
+const seenBoosters = new Set();
+for (const b of BOOSTERS) {
+  const where = b.name || JSON.stringify(b);
+  if (!b.name) problems.push('Booster with no name: ' + JSON.stringify(b));
+  if (!b.category) problems.push(`Booster ${where}: missing category`);
+  if (!b.icon) problems.push(`Booster ${where}: missing icon path`);
+
+  if (seenBoosters.has(b.name)) problems.push(`Booster ${where}: duplicate name`);
+  seenBoosters.add(b.name);
+
+  if (b.icon && !fs.existsSync(path.join(root, b.icon))) {
+    warnings.push(`${b.name}: no SVG at "${b.icon}" (a placeholder is shown instead)`);
+  }
+}
+
+/* Every booster must be reachable, and pickOne must never return a dud. */
+const drawn = new Set();
+for (let i = 0; i < ROLLS; i++) {
+  const booster = pickOne(BOOSTERS);
+  if (!booster || !BOOSTERS.includes(booster)) {
+    problems.push('pickOne returned something that is not a booster');
+    break;
+  }
+  drawn.add(booster.name);
+}
+if (BOOSTERS.length && drawn.size !== BOOSTERS.length) {
+  const never = BOOSTERS.filter((b) => !drawn.has(b.name)).map((b) => b.name);
+  problems.push(`boosters never drawn in ${ROLLS} picks: ${never.join(', ')}`);
+}
+
 /* Report ------------------------------------------------------------------- */
 const counts = Object.keys(STRATAGEM_GROUPS).map((key) => {
   const n = STRATAGEMS.filter((s) => s.groups.includes(key)).length;
@@ -65,6 +96,7 @@ const counts = Object.keys(STRATAGEM_GROUPS).map((key) => {
 
 console.log(`${STRATAGEMS.length} stratagems in the pool`);
 console.log(counts.join('\n'));
+console.log(`${BOOSTERS.length} boosters in the pool, all reachable`);
 console.log(`${ROLLS} rolls checked\n`);
 
 if (warnings.length) {

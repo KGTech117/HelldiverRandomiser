@@ -20,11 +20,20 @@
 <main>
   <section class="loadout" id="loadout" aria-label="Rolled loadout"></section>
 
+  <section class="booster is-empty" id="booster" aria-label="Rolled booster">
+    <div class="booster__art"><img class="booster__icon" alt="" src="assets/icons/placeholder.svg"></div>
+    <div class="booster__text">
+      <p class="booster__label">Ship Booster</p>
+      <h2 class="booster__name">Awaiting Orders</h2>
+      <p class="booster__category">&mdash;</p>
+    </div>
+  </section>
+
   <div class="controls">
     <button type="button" id="roll" class="roll-button">
       <span class="roll-button__label">Deploy</span>
     </button>
-    <p class="hint"><span id="pool-count">0</span> stratagems in the pool &middot; <span id="rules"></span> per loadout.</p>
+    <p class="hint"><span id="pool-count">0</span> stratagems and <span id="booster-count">0</span> boosters in the pool &middot; <span id="rules"></span> per loadout.</p>
   </div>
 
   <p class="visually-hidden" id="status" role="status" aria-live="polite"></p>
