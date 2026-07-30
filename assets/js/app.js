@@ -1,15 +1,37 @@
 /* =============================================================================
  * UI
  * -----------------------------------------------------------------------------
- * Renders four slots and re-fills them from rollLoadout() on demand.
+ * Renders four stratagem slots plus one booster, and re-fills them on demand.
  * ========================================================================== */
 
 const LOADOUT_SIZE = 4;
 const PLACEHOLDER_ICON = 'assets/icons/placeholder.svg';
 
 const loadoutEl = document.getElementById('loadout');
+const boosterEl = document.getElementById('booster');
 const rollButton = document.getElementById('roll');
 const statusEl = document.getElementById('status');
+
+/**
+ * Point an <img> at an entry's artwork, falling back to the placeholder if the
+ * file is missing. encodeURI keeps the spaces in the SVG filenames working.
+ */
+function setIcon(img, item) {
+  img.onerror = () => {
+    img.onerror = null;
+    img.src = PLACEHOLDER_ICON;
+  };
+  img.src = encodeURI(item.icon);
+  img.alt = item.name;
+}
+
+/** Restart the reveal animation, staggered by position. */
+function reveal(el, index) {
+  el.style.setProperty('--delay', `${index * 70}ms`);
+  el.classList.remove('is-dealt');
+  void el.offsetWidth;
+  el.classList.add('is-dealt');
+}
 
 /** Build the four empty slots once; rolling only swaps their contents. */
 function buildSlots() {
@@ -27,19 +49,11 @@ function buildSlots() {
 }
 
 function fillCard(card, stratagem, index) {
-  const img = card.querySelector('.card__icon');
   const tags = (stratagem.groups || [])
     .map((key) => STRATAGEM_GROUPS[key] && STRATAGEM_GROUPS[key].label)
     .filter(Boolean);
 
-  // encodeURI keeps the spaces in the SVG filenames working as URLs.
-  img.onerror = () => {
-    img.onerror = null;
-    img.src = PLACEHOLDER_ICON;
-  };
-  img.src = encodeURI(stratagem.icon);
-  img.alt = stratagem.name;
-
+  setIcon(card.querySelector('.card__icon'), stratagem);
   card.querySelector('.card__name').textContent = stratagem.name;
   card.querySelector('.card__category').textContent = stratagem.category;
   card.querySelector('.card__tags').innerHTML = tags
@@ -47,12 +61,16 @@ function fillCard(card, stratagem, index) {
     .join('');
 
   card.classList.remove('is-empty');
-  card.style.setProperty('--delay', `${index * 70}ms`);
+  reveal(card, index);
+}
 
-  // Restart the reveal animation on every roll.
-  card.classList.remove('is-dealt');
-  void card.offsetWidth;
-  card.classList.add('is-dealt');
+function fillBooster(booster) {
+  setIcon(boosterEl.querySelector('.booster__icon'), booster);
+  boosterEl.querySelector('.booster__name').textContent = booster.name;
+  boosterEl.querySelector('.booster__category').textContent = booster.category;
+
+  boosterEl.classList.remove('is-empty');
+  reveal(boosterEl, LOADOUT_SIZE); // lands just after the fourth card
 }
 
 function roll() {
@@ -61,19 +79,25 @@ function roll() {
     groups: STRATAGEM_GROUPS,
     size: LOADOUT_SIZE,
   });
+  const booster = pickOne(BOOSTERS);
 
   const cards = loadoutEl.querySelectorAll('.card');
   loadout.forEach((stratagem, i) => fillCard(cards[i], stratagem, i));
+  if (booster) fillBooster(booster);
 
-  statusEl.textContent = `Loadout issued: ${loadout.map((s) => s.name).join(', ')}.`;
+  const names = loadout.map((s) => s.name).join(', ');
+  statusEl.textContent = booster
+    ? `Loadout issued: ${names}. Booster: ${booster.name}.`
+    : `Loadout issued: ${names}.`;
 }
 
 buildSlots();
 rollButton.addEventListener('click', roll);
 
-// The footer hint is built from the groups, so adding a restriction in data.js
-// shows up here without touching the markup.
+// The counts and the caps line are built from data.js, so adding a stratagem,
+// a booster or a restriction shows up here without touching the markup.
 document.getElementById('pool-count').textContent = STRATAGEMS.length;
+document.getElementById('booster-count').textContent = BOOSTERS.length;
 document.getElementById('rules').textContent = Object.values(STRATAGEM_GROUPS)
   .map((group) => `max ${group.max} ${group.label}`)
   .join(' · ');

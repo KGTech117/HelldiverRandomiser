@@ -175,8 +175,69 @@ body {
 .card.is-empty .card__icon { opacity: .16; }
 .card.is-empty .card__name { color: var(--muted); font-weight: 400; }
 
+/* --- booster panel ------------------------------------------------------- */
+.booster {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  max-width: 1120px;
+  margin: 1rem auto 0;
+  padding: 1rem 1.5rem;
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  border-left: 3px solid var(--yellow);
+}
+
+.booster__art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 4.5rem;
+  height: 4.5rem;
+}
+
+.booster__icon {
+  width: 4.5rem;
+  height: 4.5rem;
+  object-fit: contain;
+}
+
+.booster__label {
+  margin: 0 0 .3rem;
+  color: var(--yellow);
+  font-size: .66rem;
+  font-weight: 700;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+}
+
+.booster__name {
+  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.booster__category {
+  margin: .35rem 0 0;
+  color: var(--muted);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.booster.is-empty {
+  border-left-color: var(--panel-edge);
+}
+
+.booster.is-empty .booster__icon { opacity: .16; }
+.booster.is-empty .booster__label { color: var(--muted); }
+.booster.is-empty .booster__name { color: var(--muted); font-weight: 400; }
+
 /* --- the one animation --------------------------------------------------- */
-.card.is-dealt {
+.card.is-dealt,
+.booster.is-dealt {
   animation: deal .24s ease-out both;
   animation-delay: var(--delay, 0ms);
 }
@@ -257,11 +318,13 @@ body {
 
 @media (max-width: 460px) {
   .loadout { grid-template-columns: 1fr; }
+  .booster { flex-direction: column; gap: .75rem; text-align: center; }
   .card { min-height: 0; padding-bottom: 1rem; }
   .roll-button { width: 100%; padding-inline: 1rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card.is-dealt { animation: none; }
+  .card.is-dealt,
+  .booster.is-dealt { animation: none; }
   .roll-button { transition: none; }
 }

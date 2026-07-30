@@ -33,28 +33,6 @@ const STRATAGEM_GROUPS = {
  *   groups   - [] means "always usable"; otherwise the group keys from above.
  * -------------------------------------------------------------------------- */
 
-const BOOSTERS = [
-  { name: 'Armed Resupply Pods' },              category: 'Urban Legends',          icon: 'Boosters/Armed_Resupply_Pods_Booster_Icon.svg',              groups: [] },
-  { name: 'Concealed Insertion' },              category: 'Redacted Regiment',      icon: 'Boosters/Concealed_Insertion_Booster_Icon.svg',              groups: [] },
-  { name: 'Dead Sprint' },                      category: 'Truth Enforcers',        icon: 'Boosters/Dead_Sprint_Booster_Icon.svg',                      groups: [] },
-  { name: 'Experimental Infusion' },            category: 'Viper Commandos',        icon: 'Boosters/Experimental_Infusion_Booster_Icon.svg',            groups: [] },
-  { name: 'Expert Extraction Pilot' },          category: 'Democratic Detonation',  icon: 'Boosters/Expert_Extraction_Pilot_Booster_Icon.svg',          groups: [] },
-  { name: 'Firebomb Hellpods' },                category: 'Freedom\'s Flame',       icon: 'Boosters/Firebomb_Hellpods_Booster_Icon.svg',                groups: [] },
-  { name: 'Flexible Reinforcement Budget' },    category: 'Steeled Veterans',       icon: 'Boosters/Flexible_Reinforcement_Budget_Booster_Icon.svg',    groups: [] },
-  { name: 'Hellpod Space Optimisation' },       category: 'Helldivers Mobilise',    icon: 'Boosters/Hellpod_Space_Optimization_Booster_Icon.svg',       groups: [] },
-  { name: 'Increased Reinforcement Budget' },   category: 'Helldivers Mobilise',    icon: 'Boosters/Increased_Reinforcement_Budget_Booster_Icon.svg',   groups: [] },
-  { name: 'Localization Confusion' },           category: 'Cutting Edge',           icon: 'Boosters/Localization_Confusion_Booster_Icon.svg',           groups: [] },
-  { name: 'Motivational Shocks' },              category: 'Polar Patriots',         icon: 'Boosters/Motivational_Shocks_Booster_Icon.svg',              groups: [] },
-  { name: 'Muscle Enhancement' },               category: 'Helldivers Mobilise',    icon: 'Boosters/Muscle_Enhancement_Booster_Icon.svg',               groups: [] },
-  { name: 'Sample Extricator' },                category: 'Borderline Justice',     icon: 'Boosters/Sample_Extricator_Booster_Icon.svg',                groups: [] },
-  { name: 'Sample Scanner' },                   category: 'Masters of Ceremony',    icon: 'Boosters/Sample_Scanner_Booster_Icon.svg',                   groups: [] },
-  { name: 'Stamina Enhancement' },              category: 'Helldivers Mobilise',    icon: 'Boosters/Stamina_Enhancement_Booster_Icon.svg',              groups: [] },
-  { name: 'Stun Pods' },                        category: 'Force of Law',           icon: 'Boosters/Stun_Pods_Booster_Icon.svg',                        groups: [] },
-  { name: 'UAV Recon Booster' },                category: 'Helldivers Mobilise',    icon: 'Boosters/UAV_Recon_Booster_Icon.svg',                        groups: [] },
-  { name: 'Vitality Enchancement' },            category: 'Helldivers Mobilise',    icon: 'Boosters/Vitality_Enhancement_Booster_Icon.svg',             groups: [] },
-
-];
-
 const STRATAGEMS = [
   /* --- Bridge ------------------------------------------------------------ */
   { name: 'Orbital Precision Strike',   category: 'Bridge', icon: 'Bridge/Orbital Precision Strike.svg',    groups: [] },
@@ -159,6 +137,37 @@ const STRATAGEMS = [
   { name: 'CQC-20',                 category: 'Siege Breakers',         icon: 'Siege Breakers/CQC-20.svg',                  groups: ['support'] },
   { name: 'EAT-411',                category: 'Siege Breakers',         icon: 'Siege Breakers/EAT-411.svg',                 groups: ['support'] },
   { name: 'GL-28',                  category: 'Siege Breakers',         icon: 'Siege Breakers/GL-28.svg',                   groups: ['backpack', 'support'] },
+];
+
+/* -----------------------------------------------------------------------------
+ * 3. BOOSTERS
+ * -----------------------------------------------------------------------------
+ * One booster is rolled alongside the four stratagems. Boosters deliberately
+ * have no `groups`: only ever one is picked, so there is nothing to restrict.
+ *
+ *   name     - shown on the booster panel
+ *   category - the Warbond it comes from
+ *   icon     - path to the SVG, relative to index.html
+ * -------------------------------------------------------------------------- */
+const BOOSTERS = [
+  { name: 'Armed Resupply Pods',            category: 'Urban Legends',         icon: 'Boosters/Armed_Resupply_Pods_Booster_Icon.svg' },
+  { name: 'Concealed Insertion',            category: 'Redacted Regiment',     icon: 'Boosters/Concealed_Insertion_Booster_Icon.svg' },
+  { name: 'Dead Sprint',                    category: 'Truth Enforcers',       icon: 'Boosters/Dead_Sprint_Booster_Icon.svg' },
+  { name: 'Experimental Infusion',          category: 'Viper Commandos',       icon: 'Boosters/Experimental_Infusion_Booster_Icon.svg' },
+  { name: 'Expert Extraction Pilot',        category: 'Democratic Detonation', icon: 'Boosters/Expert_Extraction_Pilot_Booster_Icon.svg' },
+  { name: 'Firebomb Hellpods',              category: 'Freedom\'s Flame',      icon: 'Boosters/Firebomb_Hellpods_Booster_Icon.svg' },
+  { name: 'Flexible Reinforcement Budget',  category: 'Steeled Veterans',      icon: 'Boosters/Flexible_Reinforcement_Budget_Booster_Icon.svg' },
+  { name: 'Hellpod Space Optimisation',     category: 'Helldivers Mobilise',   icon: 'Boosters/Hellpod_Space_Optimization_Booster_Icon.svg' },
+  { name: 'Increased Reinforcement Budget', category: 'Helldivers Mobilise',   icon: 'Boosters/Increased_Reinforcement_Budget_Booster_Icon.svg' },
+  { name: 'Localization Confusion',         category: 'Cutting Edge',          icon: 'Boosters/Localization_Confusion_Booster_Icon.svg' },
+  { name: 'Motivational Shocks',            category: 'Polar Patriots',        icon: 'Boosters/Motivational_Shocks_Booster_Icon.svg' },
+  { name: 'Muscle Enhancement',             category: 'Helldivers Mobilise',   icon: 'Boosters/Muscle_Enhancement_Booster_Icon.svg' },
+  { name: 'Sample Extricator',              category: 'Borderline Justice',    icon: 'Boosters/Sample_Extricator_Booster_Icon.svg' },
+  { name: 'Sample Scanner',                 category: 'Masters of Ceremony',   icon: 'Boosters/Sample_Scanner_Booster_Icon.svg' },
+  { name: 'Stamina Enhancement',            category: 'Helldivers Mobilise',   icon: 'Boosters/Stamina_Enhancement_Booster_Icon.svg' },
+  { name: 'Stun Pods',                      category: 'Force of Law',          icon: 'Boosters/Stun_Pods_Booster_Icon.svg' },
+  { name: 'UAV Recon Booster',              category: 'Helldivers Mobilise',   icon: 'Boosters/UAV_Recon_Booster_Booster_Icon.svg' },
+  { name: 'Vitality Enhancement',           category: 'Helldivers Mobilise',   icon: 'Boosters/Vitality_Enhancement_Booster_Icon.svg' },
 ];
 
 /* Exported for the Node checker in tools/. Ignored by the browser. */

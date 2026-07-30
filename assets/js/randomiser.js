@@ -74,7 +74,16 @@ function rollLoadout(options) {
   return loadout;
 }
 
+/**
+ * Pick a single random entry. Used for the booster, where exactly one is taken
+ * and there is nothing to constrain.
+ */
+function pickOne(pool, rng = Math.random) {
+  if (!Array.isArray(pool) || pool.length === 0) return null;
+  return pool[Math.floor(rng() * pool.length)];
+}
+
 /* Exported for the Node checker in tools/. Ignored by the browser. */
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { shuffle, fitsGroupLimits, isValidLoadout, rollLoadout };
+  module.exports = { shuffle, fitsGroupLimits, isValidLoadout, rollLoadout, pickOne };
 }

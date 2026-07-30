@@ -1,8 +1,9 @@
 # Stratagem Randomiser
 
-Rolls a random four-stratagem Helldivers loadout that is always legal:
+Rolls a random four-stratagem Helldivers loadout, plus one booster, that is
+always legal:
 
-- exactly **4** stratagems
+- exactly **4** stratagems and **1** booster
 - **no duplicates**
 - **max one backpack-slot stratagem**
 - **max one support weapon**
@@ -10,17 +11,18 @@ Rolls a random four-stratagem Helldivers loadout that is always legal:
 - **max one FRV**
 
 No build step, no dependencies. Open `index.html` in a browser and press
-**RANDOMISE**.
+**DEPLOY**.
 
 ```
 index.html                  the page
 assets/css/styles.css       theme
-assets/js/data.js           >>> the roster and the restrictions — edit this <<<
+assets/js/data.js           >>> the roster, boosters and restrictions — edit this <<<
 assets/js/randomiser.js     roll logic
-assets/js/app.js            renders the four cards
-assets/icons/placeholder.svg  shown when a stratagem has no artwork yet
+assets/js/app.js            renders the four cards and the booster panel
+assets/icons/placeholder.svg  shown when an entry has no artwork yet
 tools/check.cjs             sanity check — node tools/check.cjs
 <Ship module>/*.svg         the stratagem artwork, unchanged, where it already was
+Boosters/*.svg              the booster artwork
 StratagemList.txt           the source list the roster was built from
 ```
 
@@ -83,6 +85,26 @@ shipped in. Two things worth knowing:
 
 ---
 
+## Adding a booster
+
+One booster is rolled with every loadout and shown in its own panel under the
+four cards. Add a line to the `BOOSTERS` array in `assets/js/data.js`:
+
+```js
+{ name: 'Muscle Enhancement', category: 'Helldivers Mobilise', icon: 'Boosters/Muscle_Enhancement_Booster_Icon.svg' },
+```
+
+Boosters take `name`, `category` and `icon` — the same meanings as a stratagem.
+They have **no `groups` field**: exactly one booster is picked per roll, so
+there is nothing for a cap to do. The count in the line under the button and the
+booster panel both come straight from this array.
+
+The booster icons live in `Boosters/`. As with stratagems, a missing file falls
+back to the placeholder rather than breaking, so you can add the entry before
+the artwork exists.
+
+---
+
 ## Adding a new restriction
 
 Say you want at most one sentry per loadout. Add a group to
@@ -105,7 +127,7 @@ Then tag the members:
 ```
 
 `label` is the text on the little card badge, and it is also what appears in
-the caps line under the RANDOMISE button. `max` is how many members may appear
+the caps line under the DEPLOY button. `max` is how many members may appear
 in one loadout — set it to `2` if you want to allow a pair.
 
 To **remove** a restriction, delete the group and clear that key out of the
@@ -120,11 +142,11 @@ To **remove** a restriction, delete the group and clear that key out of the
 EXO-45 Patriot Exosuit · EXO-49 Emancipator Exosuit · EXO-51 Lumberer ·
 EXO-55 Breakthrough
 
-**Backpack Slot — max 1** (21 members)
+**Backpack Slot — max 1** (22 members)
 
 Airburst Rocket Launcher · Autocannon · AX/FLAM-75 Guard Dog · Ballistic Shield
-Backpack · C4 Pack · Cremator · Directional Shield · Guard Dog · Guard Dog
-Breath · Guard Dog K-9 · Guard Dog Rover · Hellbomb Pack · Hover Pack · Jump
+Backpack · C4 Pack · Cremator · Directional Shield · GL-28 · Guard Dog · Guard
+Dog Breath · Guard Dog K-9 · Guard Dog Rover · Hellbomb Pack · Hover Pack · Jump
 Pack · LIFT-182 Warp Pack · M-1000 Maxigun · Recoilless Rifle · Shield Generator
 Pack · Spear · Supply Pack · W.A.S.P. Launcher
 
@@ -143,7 +165,7 @@ M-1000 Maxigun · Machine Gun · MS-11 Solo Silo · One True Flag · Quasar Cann
 Railgun · Recoilless Rifle · Spear · Speargun · Stalwart · Sterilizer ·
 W.A.S.P. Launcher
 
-Taken from the wiki's "Support Weapons" category. Eight of these are also
+Taken from the wiki's "Support Weapons" category. Nine of these are also
 backpack items — a stratagem can sit in both groups and counts against both
 caps.
 
@@ -207,10 +229,11 @@ border path, or the card will show a filled tile instead of a floating glyph.
 node tools/check.cjs
 ```
 
-It verifies that every entry is complete, that there are no duplicate names,
-that every `groups` key refers to a real group, that every `icon` path resolves
-to a file, and that 100,000 rolls all come back with four unique stratagems
-inside the group caps. A missing SVG is reported as a warning, not a failure.
+It verifies that every stratagem and booster entry is complete, that there are
+no duplicate names, that every `groups` key refers to a real group, that every
+`icon` path resolves to a file, that 100,000 rolls all come back with four
+unique stratagems inside the group caps, and that every booster can actually be
+drawn. A missing SVG is reported as a warning, not a failure.
 
 ---
 
