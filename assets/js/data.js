@@ -167,5 +167,5 @@ const STRATAGEMS = [
 
 /* Exported for the Node checker in tools/. Ignored by the browser. */
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { STRATAGEM_GROUPS, STRATAGEMS };
+  module.exports = { STRATAGEM_GROUPS, STRATAGEMS, BOOSTERS };
 }
